@@ -14,6 +14,6 @@ public class Runnable {
 
         UserController userController = new UserController();
         userController.checkUser();
-
+      //  CategoryRepository.viewCategories();
     }
 }

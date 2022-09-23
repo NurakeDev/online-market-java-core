@@ -23,10 +23,10 @@ public class ProductRepository {
 
         products.add(new Product(1L, "Samsung Galaxy 03",
                 MeasurementRepository.getMeasurementByName("dona"),
-                CategoryRepository.getCategoryById(10L)));
+                CategoryRepository.getCategoryById(2L)));
         products.add(new Product(2L, "O`tkan kunlar",
                 MeasurementRepository.getMeasurementByName("dona")
-                , CategoryRepository.getCategoryById(11L)));
+                , CategoryRepository.getCategoryById(8L)));
 
 
     }
@@ -43,7 +43,7 @@ public class ProductRepository {
 
     public static Product getProductById(Long id){
         for (Product product : products) {
-            if (product.getId() == id){
+            if (product.getId().equals(id)){
                 return product;
             }
         }

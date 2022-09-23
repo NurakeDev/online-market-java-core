@@ -33,6 +33,37 @@ public class CategoryRepository {
                 "Sport anjomlari",
                 "\uD83D\uDCDA Books"
         ).forEach(categoryService::newCategory);
+
+        Arrays.asList(
+                "Kir yuvish mashinalari",
+                "Uy uchun changyutgichlar",
+                "Iqlim ta`minlovchi qurilmalar",
+                "Tikuv uskunlari"
+        ).forEach(s -> categoryService.newCategory(s, categories.get(0)));
+
+        Arrays.asList(
+                "Smartfonlar",
+                "Smartfonlar va gadjetlar uchun akssessuarlar",
+                "Planshetlar",
+                "Telefonlar",
+                "Tugmali telefonlar"
+        ).forEach(s -> categoryService.newCategory(s, categories.get(1)));
+
+        Arrays.asList(
+                "Noutbuklar",
+                "Monitorlar",
+                "Printerlar",
+                "Tizim uskunalari",
+                "Noutbuk uchun sumka va ryukzaklar"
+        ).forEach(s -> categoryService.newCategory(s, categories.get(2)));
+
+
+
+
+    }
+
+    public static void viewCategories(){
+        System.out.println(categories);
     }
 
     public static Category getCategoryById(Long id){
