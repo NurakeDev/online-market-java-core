@@ -13,11 +13,12 @@ public class IncomeProductRepository {
     public static void startIncomeProducts(){
         incomeProducts.add(new IncomeProduct(1L,
                 ProductRepository.getProductById(1L),
-                "Xotira: ........ 4/64\n" +
-                        "Protsessor: ........ Unisoc T606\n" +
-                        "Camera: ........ 48MP+2MP",
-                92L,
+                """
+                        Xotira: ........ 4/64
+                        Protsessor: ........ Unisoc T606
+                        Camera: ........ 48MP+2MP""",
                 1798000L,
+                92,
                 "2022:08:01"
                 ));
 
@@ -25,10 +26,18 @@ public class IncomeProductRepository {
                 ProductRepository.getProductById(2L),
                 "Muallif: ....... Abdulla Qosiriy\n" +
                         "Janr: ....... ",
-                50L,25000L ,"2016:01:20" ));
+                25000L ,90, "2016:01:20" ));
 
     }
 
+    public static IncomeProduct getIncomeProductByName(String name){
+        for (IncomeProduct incomeProduct : incomeProducts) {
+            if (incomeProduct.getProduct().getName().equalsIgnoreCase(name)){
+                return incomeProduct;
+            }
+        }
+    return null;
+    }
     public static IncomeProduct getIncomeProductByProduct(Product product){
         for (IncomeProduct incomeProduct : incomeProducts) {
             if (incomeProduct.getProduct().equals(product)){

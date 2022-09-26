@@ -22,15 +22,10 @@ public class UserController {
             System.out.println("0. Chiqish");
             in = new Scanner(System.in);
             int select = in.nextInt();
-            switch (select){
-                case 1:
-                    signIn();
-                    break;
-                case 2:
-                    logIn();
-                    break;
-                default:
-                    System.exit(0);
+            switch (select) {
+                case 1 -> signIn();
+                case 2 -> logIn();
+                default -> System.exit(0);
             }
             
         }
@@ -47,11 +42,21 @@ public class UserController {
         if (role == null){
             System.out.println("Bu foydalanuvchi topilmadi.");
         }
-        else {
+        else if(role.getName().equalsIgnoreCase("Customer")){
             myUser = UserRepository.getUserByEmailPassword(emailAdd, pass);
             UserRepository.setMyUser(myUser);
             ShopController shopController = new ShopController();
             shopController.startControl(myUser);
+        }
+        else if (role.getName().equalsIgnoreCase("Salesman")){
+            SalesmanController salesmanController = new SalesmanController();
+            salesmanController.salesmanMenu();
+        }
+        else if (role.getName().equalsIgnoreCase("Manager")){
+
+        }
+        else if (role.getName().equalsIgnoreCase("Admin")){
+
         }
     }
 
@@ -88,9 +93,9 @@ public class UserController {
         Country country1 = new Country((long)CountryRepository.countries.size(), country);
         Region region1 = new Region((long)RegionRepository.regions.size(), region, country1);
         District district1 = new District((long) DistrictRepository.districts.size(), district, region1);
-        Address address = new Address((long)AddressRepository.addresses.size(), home, street, district1);
 
-        return address;
+
+        return new Address((long)AddressRepository.addresses.size(), home, street, district1);;
 
     }
 

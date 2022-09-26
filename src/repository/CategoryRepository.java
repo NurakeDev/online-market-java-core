@@ -63,7 +63,9 @@ public class CategoryRepository {
     }
 
     public static void viewCategories(){
-        System.out.println(categories);
+        for (Category category : categories) {
+            System.out.println(category.getId() + ". " + category.getName() + '\n');
+        }
     }
 
     public static Category getCategoryById(Long id){

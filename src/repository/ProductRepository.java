@@ -20,7 +20,6 @@ public class ProductRepository {
 
     public static void startProducts(){
         products = new ArrayList<>();
-
         products.add(new Product(1L, "Samsung Galaxy 03",
                 MeasurementRepository.getMeasurementByName("dona"),
                 CategoryRepository.getCategoryById(2L)));
@@ -29,6 +28,15 @@ public class ProductRepository {
                 , CategoryRepository.getCategoryById(8L)));
 
 
+    }
+
+    public static Product getProductByName(String name){
+        for (Product product : products) {
+            if (product.getName().equalsIgnoreCase(name)){
+                return product;
+            }
+        }
+        return null;
     }
 
     public static List<Product> getProductsByCategory(Category category){
@@ -50,4 +58,10 @@ public class ProductRepository {
         return null;
     }
 
+    public static void viewProducts() {
+        for (Product product: products){
+            System.out.println("Id: " + product.getId() +" " + product.getName());
+        }
+
+    }
 }
