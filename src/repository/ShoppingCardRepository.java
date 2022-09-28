@@ -12,7 +12,8 @@ public class ShoppingCardRepository {
     public static List<ShoppingCard> shoppingCardList = new ArrayList<>();
 
     public static void showMyShoppingCart(User user){
-        System.out.println(shoppingCardList);
+
+        System.out.println(shoppingCardList.size() == 0?"Savatcha bo`sh":shoppingCardList);
     }
 
     public static ShoppingCard getMyShoppingCard(User user){

@@ -13,37 +13,39 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-
 public class SaleController {
 
     private Scanner in = new Scanner(System.in);
 
-
     public void startSale() {
         boolean exit = true;
-        while (exit) {
+        while (true) {
             in = new Scanner(System.in);
 
             System.out.println("Kategoriyani tanlang: ");
             List<Category> categories = CategoryRepository.categories;
             int index = 1;
-            for (int i = 0; i < categories.size(); i++) {
-                Category category = categories.get(i);
-                System.out.println(category);
-            }
+            categories.stream().filter(
+                    value -> value.getParent() == null)
+                    .map(category -> category.getId() + ". "
+                            + category.getName()).forEach(System.out::println);
             System.out.println("0. Asosiy Menyuga qaytish");
 
             int selectCategory = in.nextInt();  // categories.size() > selectCategory
-            if (selectCategory == 0){
+            if (selectCategory == 0) {
                 ShopController shopController = new ShopController();
                 shopController.startControl(UserRepository.getMyUser());
             }
             if (selectCategory < categories.size() && selectCategory != 0) {
-                selectCategory(CategoryRepository.getCategoryById((long) selectCategory));
+                for (Category category : categories) {
+                    if (category.getParent() == categories.get(selectCategory - 1)) {
+                        System.out.println(category.getId() + ". " + category.getName());
+                    }
+                }
+                int selectSubcategory = in.nextInt();
+                selectCategory(CategoryRepository.getCategoryById((long) selectSubcategory));
             }
-
         }
-
     }
 
     private void selectCategory(Category category) {
@@ -51,32 +53,29 @@ public class SaleController {
         int index = 0;
         for (Product product : ProductRepository.getProductsByCategory(category)) {
             products.add(product);
-            System.out.println(++index + ". " + product);
+            System.out.println(product.getId() + ". " + product.getName());
         }
         in = new Scanner(System.in);
-
         int selectProduct = in.nextInt();
 
-        if (selectProduct <= index) {
-            IncomeProduct incomeProductById = IncomeProductRepository.getIncomeProductByProduct(products.get(selectProduct - 1));
-            System.out.println(incomeProductById.getDescription() + '\n');
 
-            System.out.println("Savatchaga qo`shasizmi? 1.Ha/2.Yo`q");
-            int add = in.nextInt();
+        IncomeProduct incomeProductById = IncomeProductRepository.getIncomeProductById((long) selectProduct);
+        System.out.println(incomeProductById.getDescription() + incomeProductById.getPrice() + '\n');
 
-            System.out.println("Qancha miqdor?");
-            int qty = in.nextInt();
+        System.out.println("Savatchaga qo`shasizmi? 1.Ha/2.Yo`q");
+        int add = in.nextInt();
 
-            if (add == 1) {
+        System.out.println("Qancha miqdor?");
+        int qty = in.nextInt();
 
-                ShoppingCartController shoppingCartController = new ShoppingCartController();
+        if (add == 1) {
 
-                shoppingCartController.addToShoppingCart(UserController.myUser, incomeProductById, qty);
-            }
+            ShoppingCartController shoppingCartController = new ShoppingCartController();
 
+            shoppingCartController.addToShoppingCart(UserController.myUser, incomeProductById, qty);
         }
 
-    }
 
+    }
 
 }

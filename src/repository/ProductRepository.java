@@ -4,6 +4,7 @@ import model.Category;
 import model.Product;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -20,13 +21,16 @@ public class ProductRepository {
 
     public static void startProducts(){
         products = new ArrayList<>();
-        products.add(new Product(1L, "Samsung Galaxy 03",
-                MeasurementRepository.getMeasurementByName("dona"),
-                CategoryRepository.getCategoryById(2L)));
-        products.add(new Product(2L, "O`tkan kunlar",
-                MeasurementRepository.getMeasurementByName("dona")
-                , CategoryRepository.getCategoryById(8L)));
-
+        Arrays.asList(
+                new Product(1L, "Samsung Galaxy 03", MeasurementRepository.getMeasurementByName("dona"),
+                CategoryRepository.getCategoryById(12L)),
+                new Product(2L, "Huawei Nova Y70", MeasurementRepository.getMeasurementByName("dona"),
+                CategoryRepository.getCategoryById(12L)),
+                new Product(3L, "O`tkan kunlar",MeasurementRepository.getMeasurementByName("dona"),
+                CategoryRepository.getCategoryById(7L)),
+                new Product(4L, "Kir yuvish mashinasi BOSCH WAT28780ME ", MeasurementRepository.getMeasurementByName("dona"),
+                        CategoryRepository.getCategoryById(8L))
+        ).forEach(product -> products.add(product));
 
     }
 

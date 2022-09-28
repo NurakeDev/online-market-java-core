@@ -11,12 +11,15 @@ import java.util.Scanner;
 public class UserController {
 
     public static User myUser;
-    Scanner in = new Scanner(System.in);
+    private Scanner in = new Scanner(System.in);
     
     public void checkUser() {
         boolean exit = false;
-        while (!exit) {
-            System.out.println("'Online Market' ga xush kelibsiz.");
+        while (true) {
+            System.out.println("""
+
+                    ======'Online Market' ga xush kelibsiz.=====
+                    """);
             System.out.println("1. Ro`yxatdan o`tish");
             System.out.println("2. Hisobga kirish ");
             System.out.println("0. Chiqish");
@@ -94,8 +97,7 @@ public class UserController {
         Region region1 = new Region((long)RegionRepository.regions.size(), region, country1);
         District district1 = new District((long) DistrictRepository.districts.size(), district, region1);
 
-
-        return new Address((long)AddressRepository.addresses.size(), home, street, district1);;
+        return new Address((long)AddressRepository.addresses.size(), home, street, district1);
 
     }
 

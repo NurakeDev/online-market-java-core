@@ -7,12 +7,11 @@ import repository.CategoryRepository;
 import repository.IncomeProductRepository;
 import repository.MeasurementRepository;
 import repository.ProductRepository;
-import services.IncomeProductService;
+import services.*;
 import services.ProductService;
 import services.impl.IncomeProductSeviceImpl;
 import services.impl.ProductSeviceImpl;
 
-import java.util.List;
 import java.util.Scanner;
 
 public class SalesmanController {
@@ -70,9 +69,10 @@ public class SalesmanController {
         ProductRepository.viewProducts();
         in = new Scanner(System.in);
         System.out.println("id: ");
-        String name = in.nextLine();
+        int id = in.nextInt();
         IncomeProductService incomeProductService = new IncomeProductSeviceImpl();
-        incomeProductService.deleteIncomeproductByName(name);
+        incomeProductService.deleteIncomeProductById((long) id);
+        System.out.println("Mahsulot o`chirildi.");
     }
 
     private void deleteByName() {
@@ -81,9 +81,13 @@ public class SalesmanController {
         String name = in.nextLine();
         IncomeProductService incomeProductService = new IncomeProductSeviceImpl();
         incomeProductService.deleteIncomeproductByName(name);
+        System.out.println("Mahsulot o`chirildi.");
     }
 
     private void updateProduct() {
+        System.out.println("1. Mahsulot narxini o`zgartirish.");
+        System.out.println("2. Mahsulot miqdorini o`zgartirish");
+        System.out.println("Mahsulot tavsifini o`zgartirish");
 
     }
 
