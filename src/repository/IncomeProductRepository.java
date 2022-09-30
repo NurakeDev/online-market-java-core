@@ -21,13 +21,12 @@ public class IncomeProductRepository {
                 92,
                 "2022:08:01"
                 ));
-
-        incomeProducts.add(new IncomeProduct(2L,
+        incomeProducts.add(new IncomeProduct(3L,
                 ProductRepository.getProductById(2L),
-                "Muallif: ....... Abdulla Qosiriy\n" +
-                        "Janr: ....... ",
+                """
+                        Muallif: ....... Abdulla Qosiriy
+                        Janr: .......\s""",
                 25000L ,90, "2016:01:20" ));
-
     }
 
     public static IncomeProduct getIncomeProductByName(String name){
