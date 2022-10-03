@@ -87,8 +87,29 @@ public class SalesmanController {
     private void updateProduct() {
         System.out.println("1. Mahsulot narxini o`zgartirish.");
         System.out.println("2. Mahsulot miqdorini o`zgartirish");
-        System.out.println("Mahsulot tavsifini o`zgartirish");
+        System.out.println("3. Mahsulot tavsifini o`zgartirish");
+        System.out.println("0. Asosiy menyuga qaytish");
+        in = new Scanner(System.in);
 
+        int n = in.nextInt();
+        switch(n){
+            case 1 -> setPrice();
+            case 2 -> setQty();
+            case 3 -> setDescription();
+            default -> salesmanMenu();
+        }
+
+
+    }
+
+    private void setDescription() {
+
+    }
+
+    private void setQty() {
+    }
+
+    private void setPrice() {
     }
 
     private void addProduct() {
